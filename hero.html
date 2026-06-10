@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hero with Trust Badges</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background: #ffffff;
+  }
+
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(105deg, #f4f7fb 0%, #f4f7fb 52%, rgba(244, 247, 251, 0) 75%),
+                /* Photo placeholder: swap for background-image: url('your-photo.jpg') */
+                linear-gradient(135deg, #c9d2dc 0%, #e8edf2 35%, #aab6c2 70%, #d6dde4 100%);
+    background-size: cover;
+    background-position: center right;
+  }
+
+  .hero-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 96px 24px 80px;
+  }
+
+  .hero-copy { max-width: 520px; }
+
+  .hero-copy h1 {
+    font-size: clamp(34px, 4.5vw, 52px);
+    font-weight: 800;
+    line-height: 1.12;
+    color: #0f1c2e;
+    margin-bottom: 22px;
+  }
+
+  .hero-copy h1 .accent { color: #1a6fe0; }
+
+  .hero-copy p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: #4b5563;
+    margin-bottom: 32px;
+    max-width: 440px;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 14px 26px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary {
+    background: #1a6fe0;
+    color: #ffffff;
+    border: 2px solid #1a6fe0;
+  }
+
+  .btn-primary:hover { background: #1257b8; border-color: #1257b8; }
+
+  .btn-secondary {
+    background: #ffffff;
+    color: #0f1c2e;
+    border: 2px solid #d4dae2;
+  }
+
+  .btn-secondary:hover { border-color: #1a6fe0; color: #1a6fe0; }
+
+  .btn svg { flex-shrink: 0; }
+
+  /* ---- Trust bar ---- */
+  .trust-bar {
+    max-width: 1140px;
+    margin: -44px auto 48px;
+    position: relative;
+    padding: 0 24px;
+  }
+
+  .trust-bar-inner {
+    background: #ffffff;
+    border: 1px solid #e7ebf0;
+    border-radius: 10px;
+    box-shadow: 0 12px 32px rgba(15, 28, 46, 0.08);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 26px 20px;
+    border-right: 1px solid #e7ebf0;
+  }
+
+  .trust-item:last-child { border-right: none; }
+
+  .trust-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #eaf2fd;
+    color: #1a6fe0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .trust-text {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.35;
+    color: #0f1c2e;
+  }
+
+  .stars {
+    color: #f5a623;
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-top: 2px;
+  }
+
+  /* ---- Mobile ---- */
+  @media (max-width: 760px) {
+    .hero-inner { padding: 64px 20px 72px; }
+
+    .hero-copy { text-align: center; margin: 0 auto; }
+    .hero-copy p { margin-left: auto; margin-right: auto; }
+
+    .hero-actions { justify-content: center; }
+
+    .trust-bar { margin-top: -36px; padding: 0 20px; }
+
+    .trust-bar-inner { grid-template-columns: 1fr; }
+
+    .trust-item {
+      border-right: none;
+      border-bottom: 1px solid #e7ebf0;
+      justify-content: flex-start;
+      padding: 18px 24px;
+    }
+
+    .trust-item:last-child { border-bottom: none; }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <h1>Transform Your Home<br>Improve <span class="accent">Your Life</span></h1>
+      <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam eirmod tempor invidunt.</p>
+      <div class="hero-actions">
+        <a href="#" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          Get a Free Quote
+        </a>
+        <a href="#" class="btn btn-secondary">View Our Work</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="trust-text">Licensed<br>&amp; Insured</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13 17 22l-5-3-5 3 1.5-9"/></svg>
+      </div>
+      <div class="trust-text">A+ Rating<br>with the BBB</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <div class="trust-text">
+        5 Star Rated
+        <div class="stars">★★★★★</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Services</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background: #ffffff;
+  }
+
+  .services {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 80px 24px;
+  }
+
+  .services-header {
+    text-align: center;
+    margin-bottom: 52px;
+  }
+
+  .services-header .eyebrow {
+    color: #1a6fe0;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .services-header h2 {
+    color: #111111;
+    font-size: clamp(30px, 4vw, 44px);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+  }
+
+  .service-card {
+    background: #ffffff;
+    border: 1px solid #e9ecf0;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 6px 18px rgba(17, 24, 39, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(17, 24, 39, 0.12);
+  }
+
+  .card-image {
+    position: relative;
+    height: 160px;
+    /* Photo placeholder: swap for an <img> or background-image */
+    background: linear-gradient(165deg, #3b3026 0%, #3b3026 18%, #e8eaec 18%, #f2f3f5 55%, #d8dbde 100%);
+  }
+
+  .card-icon {
+    position: absolute;
+    left: 20px;
+    bottom: -24px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #1a6fe0;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(26, 111, 224, 0.4);
+  }
+
+  .card-body {
+    padding: 36px 20px 22px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .card-body h3 {
+    font-size: 16px;
+    font-weight: 800;
+    color: #111111;
+    margin-bottom: 10px;
+  }
+
+  .card-body p {
+    font-size: 14px;
+    line-height: 1.55;
+    color: #4b5563;
+    margin-bottom: 18px;
+    flex: 1;
+  }
+
+  .card-link {
+    color: #1a6fe0;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .card-link:hover { text-decoration: underline; }
+  .card-link::after { content: " \00bb"; }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 1024px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 560px) {
+    .services { padding: 56px 20px; }
+    .services-grid { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; }
+  }
+</style>
+</head>
+<body>
+
+<section class="services">
+  <div class="services-header">
+    <p class="eyebrow">What We Do</p>
+    <h2>Our Services</h2>
+  </div>
+
+  <div class="services-grid">
+    <article class="service-card">
+      <div class="card-image">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0L12 2.69z"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <h3>Basement Waterproofing</h3>
+        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod.</p>
+        <a href="#" class="card-link">Learn More</a>
+      </div>
+    </article>
+
+    <article class="service-card">
+      <div class="card-image">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0L12 2.69z"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <h3>Crawl Space Repair</h3>
+        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod.</p>
+        <a href="#" class="card-link">Learn More</a>
+      </div>
+    </article>
+
+    <article class="service-card">
+      <div class="card-image">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0L12 2.69z"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <h3>Foundation Repair</h3>
+        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod.</p>
+        <a href="#" class="card-link">Learn More</a>
+      </div>
+    </article>
+
+    <article class="service-card">
+      <div class="card-image">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0L12 2.69z"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <h3>Concrete Lifting</h3>
+        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod.</p>
+        <a href="#" class="card-link">Learn More</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+</body>
+</html>
