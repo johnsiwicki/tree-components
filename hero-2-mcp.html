@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wall &amp; Ceiling Repair + Paint Matching | Drywall Doctor of Kansas City</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&family=Rokkitt:wght@700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.treehouseinternetgroup.com/cms_core/css/new-base-2025.css">
+  <style>
+    /* ===== Client palette (Drywall Doctor) ===== */
+    :root {
+      --dwd-navy: #1b3d63;       /* top bar + hero background */
+      --dwd-blue: #1265b5;       /* phone block, card header, progress */
+      --dwd-blue-light: #a9c3de; /* inactive progress segments */
+      --dwd-red: #d7232e;        /* CTA button, accent headline */
+      --dwd-ink: #1a1a1a;        /* Next button */
+      --slab: "Rokkitt", "Rockwell", serif;
+    }
+
+    body { margin: 0; font-family: "Roboto", sans-serif; }
+
+    /* ===== Top Bar ===== */
+    .top_bar {
+      background-color: var(--dwd-navy);
+      color: var(--white);
+      font-size: 0.875rem;
+    }
+    .top_bar__inner {
+      max-width: 75rem;
+      margin: 0 auto;
+      display: flex;
+      align-items: stretch;
+      justify-content: flex-end;
+    }
+    .top_bar__serving {
+      display: none;
+      align-items: center;
+      margin-right: auto;
+      padding: 0.5rem 1rem;
+    }
+    .top_bar__phone {
+      background-color: var(--dwd-blue);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1.5rem;
+      white-space: nowrap;
+    }
+    .top_bar__phone .open_label {
+      display: none;
+      font-style: italic;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+    .top_bar__phone svg { width: 1rem; height: 1rem; flex-shrink: 0; }
+    .top_bar__phone a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: 0.01em;
+    }
+
+    /* ===== Header ===== */
+    .site_header { background-color: var(--white); box-shadow: 0 2px 6px rgb(0 0 0 / 0.12); position: relative; z-index: 20; }
+    .site_header__inner {
+      max-width: 75rem;
+      margin: 0 auto;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .site_header__logo img { display: block; width: 11rem; height: auto; }
+    .site_header__nav { display: none; align-items: center; gap: 1.75rem; }
+    .site_header__nav a {
+      color: #3c4654;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .site_header__nav a:hover { color: var(--dwd-blue); }
+    .site_header__cta {
+      display: none;
+      background-color: var(--dwd-red);
+      color: var(--white);
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 0.8125rem;
+      letter-spacing: 0.05em;
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      white-space: nowrap;
+    }
+    .site_header__cta:hover { background-color: #b81d26; }
+    .menu_toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #3c4654;
+      text-transform: uppercase;
+      font-family: "Roboto", sans-serif;
+      font-weight: 700;
+      font-size: 0.875rem;
+      letter-spacing: 0.04em;
+      padding: 0.5rem;
+    }
+    .menu_toggle svg { width: 1.5rem; height: 1.5rem; }
+
+    /* Mobile dropdown menu */
+    .mobile_menu {
+      display: none;
+      background-color: var(--white);
+      border-top: 1px solid #e2e6ea;
+      box-shadow: 0 8px 12px rgb(0 0 0 / 0.12);
+      position: absolute;
+      left: 0; right: 0;
+      z-index: 30;
+    }
+    .mobile_menu.is-open { display: block; }
+    .mobile_menu a {
+      display: block;
+      padding: 0.875rem 1.25rem;
+      color: #3c4654;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 0.875rem;
+      border-bottom: 1px solid #eef1f4;
+    }
+    .mobile_menu a.mobile_menu__cta { color: var(--dwd-red); }
+
+    /* ===== Hero ===== */
+    .hero { background-color: var(--dwd-navy); position: relative; overflow: hidden; }
+    .hero__photo {
+      height: 14rem;
+      background-image: url("https://cdn.treehouseinternetgroup.com/cms_images/3687/Scroll%201(5).jpg");
+      background-size: cover;
+      background-position: center 30%;
+    }
+    .hero__content {
+      padding: 2rem 1rem 3rem;
+      max-width: 30rem;
+      margin: 0 auto;
+    }
+    .hero__title {
+      font-family: var(--slab);
+      font-weight: 800;
+      color: var(--white);
+      text-align: center;
+      font-size: 1.875rem;
+      line-height: 1.2;
+      margin: 0 0 1.5rem;
+      text-shadow: 2px 2px 3px rgb(0 0 0 / 0.35);
+    }
+    .hero__title .accent { color: var(--dwd-red); display: block; }
+
+    /* ===== Estimate Card ===== */
+    .estimate_card {
+      background-color: var(--white);
+      border-radius: 0.375rem;
+      box-shadow: 0 10px 25px rgb(0 0 0 / 0.35);
+      overflow: hidden;
+      max-width: 24rem;
+      margin: 0 auto;
+    }
+    .estimate_card__header {
+      background-color: var(--dwd-blue);
+      color: var(--white);
+      text-align: center;
+      font-family: var(--slab);
+      font-weight: 800;
+      font-size: 1.375rem;
+      padding: 0.625rem 1rem;
+    }
+    .estimate_card__body { padding: 1.25rem 1.5rem 1.5rem; position: relative; }
+    .estimate_card__arrow {
+      position: absolute;
+      top: 0.5rem;
+      left: 1.25rem;
+      width: 2rem;
+      height: auto;
+    }
+    .estimate_card__intro {
+      font-weight: 700;
+      color: #1f2937;
+      text-align: center;
+      font-size: 1rem;
+      margin: 0 0 1.25rem;
+      padding-left: 1.5rem;
+    }
+    .form_step { display: none; }
+    .form_step.is-active { display: block; }
+    .form_grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form_grid--single { grid-template-columns: 1fr; }
+    .form_field label {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: #334155;
+      margin-bottom: 0.375rem;
+    }
+    .form_field input,
+    .form_field textarea {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid #8a8f98;
+      border-radius: 2px;
+      padding: 0.5rem 0.625rem;
+      font-family: "Roboto", sans-serif;
+      font-size: 0.9375rem;
+      color: #1f2937;
+      background: var(--white);
+    }
+    .form_field input:focus,
+    .form_field textarea:focus { outline: 2px solid var(--dwd-blue); outline-offset: 1px; }
+    .form_field input.has-error,
+    .form_field textarea.has-error { border-color: var(--dwd-red); outline: 1px solid var(--dwd-red); }
+    .form_actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+    .form_back {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #64748b;
+      font-family: "Roboto", sans-serif;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      text-decoration: underline;
+      padding: 0.25rem;
+      margin-right: auto;
+    }
+    .form_next {
+      background-color: var(--dwd-ink);
+      color: var(--white);
+      border: none;
+      cursor: pointer;
+      font-family: "Roboto", sans-serif;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      padding: 0.5rem 1.5rem;
+      border-radius: 2px;
+    }
+    .form_next:hover { background-color: #000; }
+    .form_submit {
+      background-color: var(--dwd-red);
+      color: var(--white);
+      border: none;
+      cursor: pointer;
+      font-family: "Roboto", sans-serif;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      padding: 0.625rem 1.5rem;
+      border-radius: 9999px;
+    }
+    .form_submit:hover { background-color: #b81d26; }
+    .form_success { text-align: center; padding: 1rem 0; }
+    .form_success h3 { font-family: var(--slab); color: var(--dwd-navy); margin: 0 0 0.5rem; font-size: 1.25rem; }
+    .form_success p { color: #334155; font-size: 0.9375rem; margin: 0; }
+
+    /* Progress bar — 3 slanted segments */
+    .estimate_card__progress {
+      display: flex;
+      gap: 0.375rem;
+      height: 0.625rem;
+      margin-top: 1.5rem;
+      transform: skewX(-25deg);
+      margin-left: -0.5rem;
+      margin-right: -0.5rem;
+    }
+    .estimate_card__progress span { flex: 1; background-color: var(--dwd-blue-light); }
+    .estimate_card__progress span.is-done { background-color: var(--dwd-blue); }
+
+    /* ===== Tablet (640px+) ===== */
+    @media (min-width: 640px) {
+      .top_bar__serving { display: flex; }
+      .top_bar__phone .open_label { display: inline; }
+      .site_header__logo img { width: 14rem; }
+      .hero__photo { height: 18rem; }
+    }
+
+    /* ===== Desktop (1024px+) ===== */
+    @media (min-width: 1024px) {
+      .site_header__nav { display: flex; }
+      .site_header__cta { display: inline-block; }
+      .menu_toggle { display: none; }
+      .site_header__inner { padding: 1rem 1.5rem; }
+      .site_header__logo img { width: 15.5rem; }
+
+      .hero { min-height: 37.5rem; display: flex; align-items: center; }
+      .hero__photo {
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 62%;
+        height: 100%;
+        clip-path: polygon(0 0, 100% 0, 76% 100%, 0 100%);
+        background-position: center 25%;
+      }
+      .hero__content {
+        position: relative;
+        z-index: 2;
+        max-width: 75rem;
+        width: 100%;
+        margin: 0 auto;
+        padding: 3.5rem 1.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .hero__right { margin-left: 52%; width: 44%; max-width: 30rem; }
+      .hero__title { font-size: 2.875rem; text-align: left; }
+      .estimate_card { margin: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="top_bar">
+    <div class="top_bar__inner">
+      <div class="top_bar__serving">Serving Kansas City Metro, Johnson County, Blue Springs, Lees Summit</div>
+      <div class="top_bar__phone">
+        <span class="open_label">We're Open</span>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>
+        <a href="tel:1-913-307-7777">1-913-307-7777</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site_header">
+    <div class="site_header__inner">
+      <a class="site_header__logo" href="https://www.drywalldoctorkc.com/">
+        <img src="https://cdn.treehouseinternetgroup.com/cms_images/3687/DWD_KC(Final_Lockup).svg" alt="Drywall Doctor of Kansas City — Wall and Ceiling Repair + Paint Matching">
+      </a>
+      <nav class="site_header__nav" aria-label="Main">
+        <a href="https://www.drywalldoctorkc.com/drywall-repair.html">Services</a>
+        <a href="https://www.drywalldoctorkc.com/about-us.html">About Us</a>
+        <a href="https://www.drywalldoctorkc.com/about-us/before-after.html">Our Work</a>
+        <a href="https://www.drywalldoctorkc.com/service-area.html">Service Area</a>
+      </nav>
+      <a class="site_header__cta" href="#estimate-form">Free Estimate</a>
+      <button class="menu_toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileMenu">
+        Menu
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+      </button>
+    </div>
+    <nav class="mobile_menu" id="mobileMenu" aria-label="Mobile">
+      <a href="https://www.drywalldoctorkc.com/drywall-repair.html">Services</a>
+      <a href="https://www.drywalldoctorkc.com/about-us.html">About Us</a>
+      <a href="https://www.drywalldoctorkc.com/about-us/before-after.html">Our Work</a>
+      <a href="https://www.drywalldoctorkc.com/service-area.html">Service Area</a>
+      <a class="mobile_menu__cta" href="#estimate-form">Free Estimate</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero__photo" role="img" aria-label="Drywall Doctor technician repairing a ceiling"></div>
+    <div class="hero__content">
+      <div class="hero__right">
+        <h1 class="hero__title">Wall &amp; Ceiling Repair <span class="accent">+ Paint Matching</span></h1>
+
+        <!-- Estimate Card -->
+        <div class="estimate_card" id="estimate-form">
+          <div class="estimate_card__header">Contact Us Today!</div>
+          <div class="estimate_card__body">
+            <svg class="estimate_card__arrow" viewBox="0 0 40 60" fill="none" aria-hidden="true">
+              <path d="M30 4 C 14 10, 8 24, 12 44" stroke="#d7232e" stroke-width="4" stroke-linecap="round"/>
+              <path d="M4 36 L 12 48 L 22 40" stroke="#d7232e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+            <p class="estimate_card__intro">Get started with a FREE estimate</p>
+
+            <form id="estimateForm" novalidate>
+              <!-- Step 1: Name -->
+              <div class="form_step is-active" data-step="1">
+                <div class="form_grid">
+                  <div class="form_field">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="firstName" autocomplete="given-name" required>
+                  </div>
+                  <div class="form_field">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" autocomplete="family-name" required>
+                  </div>
+                </div>
+                <div class="form_actions">
+                  <button type="button" class="form_next" data-next>Next</button>
+                </div>
+              </div>
+
+              <!-- Step 2: Contact info -->
+              <div class="form_step" data-step="2">
+                <div class="form_grid">
+                  <div class="form_field">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone" autocomplete="tel" required>
+                  </div>
+                  <div class="form_field">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" autocomplete="email" required>
+                  </div>
+                </div>
+                <div class="form_actions">
+                  <button type="button" class="form_back" data-back>&larr; Back</button>
+                  <button type="button" class="form_next" data-next>Next</button>
+                </div>
+              </div>
+
+              <!-- Step 3: Project details -->
+              <div class="form_step" data-step="3">
+                <div class="form_grid form_grid--single">
+                  <div class="form_field">
+                    <label for="zip">Zip Code</label>
+                    <input type="text" id="zip" name="zip" inputmode="numeric" autocomplete="postal-code" required>
+                  </div>
+                  <div class="form_field">
+                    <label for="details">How can we help?</label>
+                    <textarea id="details" name="details" rows="3"></textarea>
+                  </div>
+                </div>
+                <div class="form_actions">
+                  <button type="button" class="form_back" data-back>&larr; Back</button>
+                  <button type="submit" class="form_submit">Get My Free Estimate</button>
+                </div>
+              </div>
+
+              <!-- Success message -->
+              <div class="form_step" data-step="success">
+                <div class="form_success">
+                  <h3>Thank you!</h3>
+                  <p>We've received your request. A member of our team will reach out shortly to schedule your free estimate. Need us sooner? Call <a href="tel:1-913-307-7777" style="color:var(--dwd-blue);font-weight:700;">1-913-307-7777</a>.</p>
+                </div>
+              </div>
+            </form>
+
+            <div class="estimate_card__progress" aria-hidden="true">
+              <span class="is-done" data-seg="1"></span>
+              <span data-seg="2"></span>
+              <span data-seg="3"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuToggle.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('is-open');
+      menuToggle.setAttribute('aria-expanded', open);
+    });
+
+    // Multi-step estimate form
+    const form = document.getElementById('estimateForm');
+    const steps = Array.from(form.querySelectorAll('.form_step'));
+    const segments = document.querySelectorAll('.estimate_card__progress span');
+    let current = 1;
+
+    function showStep(step) {
+      steps.forEach(s => s.classList.toggle('is-active', s.dataset.step === String(step)));
+      segments.forEach(seg => {
+        seg.classList.toggle('is-done', step === 'success' || Number(seg.dataset.seg) <= Number(step));
+      });
+      current = step;
+    }
+
+    function validateStep(step) {
+      const fields = form.querySelector(`[data-step="${step}"]`).querySelectorAll('input[required], textarea[required]');
+      let valid = true;
+      fields.forEach(f => {
+        const ok = f.checkValidity() && f.value.trim() !== '';
+        f.classList.toggle('has-error', !ok);
+        if (!ok) valid = false;
+      });
+      return valid;
+    }
+
+    form.addEventListener('click', (e) => {
+      if (e.target.matches('[data-next]')) {
+        if (validateStep(current)) showStep(current + 1);
+      }
+      if (e.target.matches('[data-back]')) {
+        showStep(current - 1);
+      }
+    });
+
+    form.addEventListener('input', (e) => e.target.classList.remove('has-error'));
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!validateStep(3)) return;
+      // TODO: wire to your CMS lead-form endpoint, e.g.:
+      // fetch('/lead-handler', { method: 'POST', body: new FormData(form) });
+      showStep('success');
+    });
+  </script>
+</body>
+</html>
