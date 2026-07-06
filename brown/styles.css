@@ -284,7 +284,6 @@ a {
   padding: 0;
   color: #fff;
   background: transparent;
-  box-shadow: 12px 12px 0 rgb(255 255 255 / 78%);
 }
 
 .eyebrow {
@@ -829,7 +828,7 @@ h1 span {
 
 .mission {
   display: grid;
-  grid-template-columns: 1.2fr repeat(3, 1fr);
+  grid-template-columns: 1.45fr repeat(3, 1fr);
   align-items: center;
   gap: 0;
   padding: 0 max(30px, calc((100vw - var(--max)) / 2));
@@ -841,13 +840,13 @@ h1 span {
   min-height: 135px;
   display: grid;
   place-content: center;
-  padding: 20px 32px;
+  padding: 20px 34px;
   text-align: center;
 }
 
 .mission img {
   justify-self: center;
-  width: 180px;
+  width: 245px;
 }
 
 .mission div {
