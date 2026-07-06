@@ -250,8 +250,8 @@ a {
   min-height: 500px;
   overflow: hidden;
   display: grid;
-  align-items: center;
-  padding: 80px max(30px, calc((100vw - var(--max)) / 2));
+  align-items: start;
+  padding: 78px max(30px, calc((100vw - var(--max)) / 2)) 70px;
   isolation: isolate;
 }
 
@@ -268,21 +268,23 @@ a {
 .hero::after {
   content: "";
   position: absolute;
-  inset: auto 0 0 auto;
-  width: 38vw;
-  height: 100%;
+  right: 0;
+  bottom: 0;
+  width: clamp(230px, 18vw, 275px);
+  height: 44%;
   z-index: -1;
-  background: linear-gradient(108deg, transparent 0 34%, rgb(237 28 36 / 92%) 34% 100%);
-  opacity: .92;
+  background: rgb(237 28 36 / 93%);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  opacity: .94;
 }
 
 .hero-copy {
-  width: min(520px, 92vw);
-  margin-left: 8%;
-  padding: 20px 26px 22px;
+  width: min(640px, 92vw);
+  margin-left: -30px;
+  padding: 0;
   color: #fff;
-  background: rgb(0 0 0 / 82%);
-  box-shadow: 14px 14px 0 rgb(255 255 255 / 72%);
+  background: transparent;
+  box-shadow: 12px 12px 0 rgb(255 255 255 / 78%);
 }
 
 .eyebrow {
@@ -291,6 +293,17 @@ a {
   letter-spacing: .06em;
   font-size: 11px;
   font-weight: 900;
+  line-height: 1.2;
+  background: transparent;
+}
+
+.hero-copy .eyebrow {
+  margin: 0;
+  padding: 15px 54px 14px;
+  letter-spacing: .13em;
+  font-size: 12px;
+  line-height: 1;
+  background: #030303;
 }
 
 .eyebrow.dark {
@@ -307,23 +320,30 @@ p {
 
 h1 {
   margin: 0;
-  font-size: clamp(28px, 3.65vw, 46px);
-  line-height: 1.05;
-  font-weight: 900;
+  font-size: clamp(27px, 2.35vw, 31px);
+  line-height: 1.22;
+  font-weight: 750;
   font-style: italic;
 }
 
 h1 span {
   display: block;
-  font-size: .74em;
+  font-size: .98em;
+  font-weight: 900;
+}
+
+.hero-offer-body {
+  padding: 28px 54px 30px;
+  background: rgb(0 0 0 / 52%);
+  backdrop-filter: blur(1px);
 }
 
 .hero-actions {
   display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
+  flex-wrap: nowrap;
+  gap: 16px;
   align-items: center;
-  margin-top: 18px;
+  margin-top: 28px;
 }
 
 .button {
@@ -348,6 +368,14 @@ h1 span {
   background: var(--red);
 }
 
+.hero-actions .button {
+  min-width: 270px;
+  min-height: 52px;
+  border-radius: 0;
+  padding: 12px 28px;
+  font-size: 18px;
+}
+
 .button.outline {
   border-color: #111;
   background: #fff;
@@ -364,10 +392,18 @@ h1 span {
   font-weight: 800;
 }
 
+.hero-actions .coupon {
+  min-width: 264px;
+  min-height: 52px;
+  display: inline-grid;
+  align-content: center;
+  padding: 8px 18px;
+}
+
 .coupon strong {
   display: block;
   color: var(--red);
-  font-size: 22px;
+  font-size: 24px;
   line-height: 1;
 }
 
@@ -508,7 +544,8 @@ h1 span {
 .estimate-band {
   min-height: 240px;
   display: grid;
-  place-items: center;
+  align-items: center;
+  justify-items: end;
   padding: 34px 24px;
   background:
     linear-gradient(105deg, rgb(0 0 0 / 34%) 0 49%, rgb(237 28 36 / 82%) 49% 100%),
@@ -527,7 +564,7 @@ h1 span {
   background: #fff;
   text-align: center;
   box-shadow: 0 20px 38px rgb(0 0 0 / 20%);
-  transform: translateX(14%);
+  margin-right: max(84px, calc((100vw - var(--max)) / 2 + 70px));
 }
 
 .estimate-box img {
@@ -1165,6 +1202,7 @@ h1 span {
 
   .hero-copy {
     margin-left: 0;
+    transform: none;
   }
 
   .owner-band,
@@ -1271,14 +1309,31 @@ h1 span {
   }
 
   .hero::after {
-    width: 80vw;
-    opacity: .78;
+    width: 54vw;
+    height: 34%;
+    opacity: .86;
   }
 
   .hero-copy {
     width: 100%;
     padding: 20px;
     box-shadow: 8px 8px 0 rgb(255 255 255 / 65%);
+  }
+
+  .hero-copy .eyebrow {
+    padding: 12px 18px;
+    font-size: 9px;
+    letter-spacing: .08em;
+  }
+
+  .hero-offer-body {
+    padding: 20px 18px 22px;
+  }
+
+  .hero-actions .button,
+  .hero-actions .coupon {
+    min-width: 0;
+    width: 100%;
   }
 
   .hero-badge {
@@ -1333,7 +1388,7 @@ h1 span {
 
   .estimate-box {
     padding: 24px 20px;
-    transform: none;
+    margin-right: 0;
   }
 
   .estimate-box img {
