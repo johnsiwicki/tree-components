@@ -1,0 +1,464 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get a Free Estimate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+
+  .af-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    background: #eef0f4;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    padding: 48px 24px;
+  }
+
+  .af-stage {
+    position: relative;
+    width: 100%;
+    max-width: 620px;
+    min-height: 620px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .af-input { width: 100%; font-family: inherit; font-size: 17px; font-weight: 500; color: #12141a; background: #fff; border: 1px solid #e3e6ec; border-radius: 14px; padding: 15px 16px; outline: none; transition: border-color .15s ease, box-shadow .15s ease; }
+  .af-input::placeholder { color: #a8adb8; }
+  .af-input:focus { border-color: #3b63f2; box-shadow: 0 0 0 4px rgba(59,99,242,.14); }
+  select.af-input { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%235b616e' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 42px; cursor: pointer; }
+  textarea.af-input { resize: none; min-height: 104px; line-height: 1.4; }
+  .af-label { font-size: 14px; font-weight: 600; color: #5b616e; margin-bottom: 7px; display: block; }
+
+  .af-btn {
+    position: absolute;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #3b63f2;
+    border: 0;
+    border-radius: 999px;
+    padding: 20px 34px;
+    box-shadow: 0 22px 44px -14px rgba(59,99,242,.7);
+    font-family: inherit;
+    transition: opacity .18s ease;
+  }
+  .af-btn-label { font-size: 22px; font-weight: 700; color: #fff; white-space: nowrap; }
+  .af-btn-icon { color: #fff; display: flex; }
+
+  .af-panel {
+    position: absolute;
+    width: 560px;
+    max-width: calc(100vw - 48px);
+    background: #f5f6f8;
+    border: 1px solid #edeff3;
+    border-radius: 28px;
+    padding: 30px;
+    box-shadow: 0 40px 90px -40px rgba(20,30,60,.4);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .af-form { opacity: 0; }
+
+  .af-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
+  .af-eyebrow { font-size: 14px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #3b63f2; }
+  .af-title { font-size: 25px; font-weight: 800; color: #12141a; line-height: 1.1; margin-top: 3px; }
+  .af-close {
+    cursor: pointer; flex-shrink: 0; width: 40px; height: 40px; border-radius: 12px;
+    border: 1px solid #e3e6ec; background: #fff; color: #5b616e;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .af-progress { display: flex; gap: 6px; margin-bottom: 24px; }
+  .af-progress-seg { flex: 1; height: 6px; border-radius: 999px; background: #dfe2e9; transition: background .3s ease; }
+  .af-progress-seg.done { background: #3b63f2; }
+
+  .af-step-body { display: flex; flex-direction: column; gap: 14px; min-height: 210px; }
+  .af-help { font-size: 15px; color: #8b909a; line-height: 1.45; }
+  .af-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .af-grid-addr { display: grid; grid-template-columns: 1.4fr 1fr; gap: 12px; }
+
+  .af-dropzone { border: 2px dashed #cfd4de; border-radius: 16px; padding: 22px; text-align: center; background: #fff; }
+  .af-dropzone-icon { color: #a8adb8; display: flex; justify-content: center; margin-bottom: 6px; }
+  .af-dropzone-title { font-size: 15px; font-weight: 600; color: #5b616e; }
+  .af-dropzone-title span { color: #3b63f2; }
+  .af-dropzone-sub { font-size: 13px; color: #a8adb8; margin-top: 3px; }
+
+  .af-nav { display: flex; align-items: center; gap: 12px; margin-top: 22px; }
+  .af-back {
+    cursor: pointer; flex-shrink: 0; background: #fff; border: 1px solid #e3e6ec; border-radius: 14px;
+    padding: 15px 22px; font-family: inherit; font-size: 17px; font-weight: 700; color: #5b616e;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .af-next {
+    cursor: pointer; flex: 1; background: #3b63f2; border: 0; border-radius: 14px; padding: 16px;
+    font-family: inherit; font-size: 18px; font-weight: 700; color: #fff;
+    box-shadow: 0 18px 38px -14px rgba(59,99,242,.7);
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+
+  .af-success { background: #fff; border: 1px solid #eef0f3; border-radius: 20px; padding: 44px 24px; text-align: center; }
+  .af-success-icon { width: 64px; height: 64px; border-radius: 999px; background: #e7f3ec; color: #1f9d57; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; }
+  .af-success-title { font-size: 24px; font-weight: 800; color: #12141a; }
+  .af-success-sub { font-size: 16px; color: #8b909a; margin-top: 8px; line-height: 1.45; }
+
+  .af-hint { font-size: 15px; color: #9aa0ab; font-weight: 500; }
+
+  .af-ghost {
+    position: fixed; margin: 0; z-index: 9999; background: #3b63f2;
+    box-shadow: 0 26px 50px -18px rgba(59,99,242,.7);
+  }
+</style>
+</head>
+<body>
+
+<div class="af-page">
+  <div class="af-stage" id="afStage">
+
+    <!-- COLLAPSED: generic button -->
+    <button type="button" class="af-btn" id="afBtn" aria-haspopup="dialog" aria-expanded="false">
+      <span class="af-btn-label">Get a free estimate</span>
+      <span class="af-btn-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+      </span>
+    </button>
+
+    <!-- EXPANDED: multistep panel -->
+    <div class="af-panel" id="afPanel" role="dialog" aria-modal="true" aria-label="Free estimate form">
+      <div class="af-form" id="afForm">
+
+        <div class="af-head">
+          <div>
+            <div class="af-eyebrow" id="afEyebrow"></div>
+            <div class="af-title" id="afTitle"></div>
+          </div>
+          <button type="button" class="af-close" id="afClose" aria-label="Close">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+          </button>
+        </div>
+
+        <div id="afWizard">
+          <div class="af-progress" id="afProgress"></div>
+
+          <div class="af-step-body" id="afStepBody"></div>
+
+          <div class="af-nav">
+            <button type="button" class="af-back" id="afBack" hidden>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"></path></svg>
+              Back
+            </button>
+            <button type="button" class="af-next" id="afNext">
+              <span id="afNextLabel"></span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="af-success" id="afSuccess" hidden>
+          <div class="af-success-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+          </div>
+          <div class="af-success-title" id="afSuccessTitle"></div>
+          <div class="af-success-sub">We&#8217;ll reach out within one business day to schedule your free estimate.</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="af-hint">Click to open &#183; step through the form &#183; close with &times; or click outside</div>
+</div>
+
+<script>
+(function () {
+  var STEPS = [
+    { eyebrow: 'Step 1 of 4', title: 'Where are you located?' },
+    { eyebrow: 'Step 2 of 4', title: 'Your address' },
+    { eyebrow: 'Step 3 of 4', title: 'Contact information' },
+    { eyebrow: 'Step 4 of 4', title: 'About your project' },
+  ];
+  var STATES = ['AL','AK','AZ','AR','CA','CO','CT','DE','DC','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY'];
+  var SOURCES = ['Referral','Previous Customer','Internet / Web Search','TV','Radio','Mail','Other'];
+  var EASE = 'cubic-bezier(.16,1,.3,1)';
+
+  var btn = document.getElementById('afBtn');
+  var panel = document.getElementById('afPanel');
+  var form = document.getElementById('afForm');
+  var eyebrowEl = document.getElementById('afEyebrow');
+  var titleEl = document.getElementById('afTitle');
+  var progressEl = document.getElementById('afProgress');
+  var stepBodyEl = document.getElementById('afStepBody');
+  var backBtn = document.getElementById('afBack');
+  var nextBtn = document.getElementById('afNext');
+  var nextLabelEl = document.getElementById('afNextLabel');
+  var closeBtn = document.getElementById('afClose');
+  var wizardEl = document.getElementById('afWizard');
+  var successEl = document.getElementById('afSuccess');
+  var successTitleEl = document.getElementById('afSuccessTitle');
+
+  var state = {
+    expanded: false, busy: false, step: 0, done: false,
+    zip: '', street: '', city: '', stateVal: '',
+    first: '', last: '', phone: '', email: '', source: '', concerns: '',
+  };
+
+  function el(tag, attrs, children) {
+    var e = document.createElement(tag);
+    attrs = attrs || {};
+    Object.keys(attrs).forEach(function (k) {
+      if (k === 'class') e.className = attrs[k];
+      else if (k === 'text') e.textContent = attrs[k];
+      else if (k.indexOf('on') === 0) e.addEventListener(k.slice(2).toLowerCase(), attrs[k]);
+      else e.setAttribute(k, attrs[k]);
+    });
+    (children || []).forEach(function (c) { e.appendChild(c); });
+    return e;
+  }
+
+  function bindInput(input, key, evt) {
+    input.value = state[key];
+    input.addEventListener(evt || 'input', function (e) {
+      state[key] = e.target.value;
+    });
+    return input;
+  }
+
+  function renderStepBody() {
+    stepBodyEl.innerHTML = '';
+    var i = state.step;
+
+    if (i === 0) {
+      var wrapZip = el('div', {}, [
+        el('label', { class: 'af-label', text: 'Your ZIP code' }),
+        bindInput(el('input', { class: 'af-input', inputmode: 'numeric', placeholder: 'e.g. 32210' }), 'zip'),
+      ]);
+      stepBodyEl.appendChild(wrapZip);
+      stepBodyEl.appendChild(el('div', { class: 'af-help', text: 'We’ll confirm we service your area before booking a visit.' }));
+    }
+
+    if (i === 1) {
+      stepBodyEl.appendChild(el('div', {}, [
+        el('label', { class: 'af-label', text: 'Street address' }),
+        bindInput(el('input', { class: 'af-input', placeholder: '123 Main St' }), 'street'),
+      ]));
+
+      var stateSelect = el('select', { class: 'af-input' });
+      stateSelect.appendChild(el('option', { value: '', text: 'Select…' }));
+      STATES.forEach(function (st) {
+        stateSelect.appendChild(el('option', { value: st, text: st }));
+      });
+      bindInput(stateSelect, 'stateVal', 'change');
+
+      stepBodyEl.appendChild(el('div', { class: 'af-grid-addr' }, [
+        el('div', {}, [
+          el('label', { class: 'af-label', text: 'City' }),
+          bindInput(el('input', { class: 'af-input', placeholder: 'City' }), 'city'),
+        ]),
+        el('div', {}, [
+          el('label', { class: 'af-label', text: 'State' }),
+          stateSelect,
+        ]),
+      ]));
+    }
+
+    if (i === 2) {
+      stepBodyEl.appendChild(el('div', { class: 'af-grid-2' }, [
+        el('div', {}, [el('label', { class: 'af-label', text: 'First name' }), bindInput(el('input', { class: 'af-input', placeholder: 'First' }), 'first')]),
+        el('div', {}, [el('label', { class: 'af-label', text: 'Last name' }), bindInput(el('input', { class: 'af-input', placeholder: 'Last' }), 'last')]),
+      ]));
+      stepBodyEl.appendChild(el('div', { class: 'af-grid-2' }, [
+        el('div', {}, [el('label', { class: 'af-label', text: 'Phone' }), bindInput(el('input', { class: 'af-input', inputmode: 'tel', placeholder: 'Phone' }), 'phone')]),
+        el('div', {}, [el('label', { class: 'af-label', text: 'Email' }), bindInput(el('input', { class: 'af-input', inputmode: 'email', placeholder: 'Email' }), 'email')]),
+      ]));
+
+      var sourceSelect = el('select', { class: 'af-input' });
+      sourceSelect.appendChild(el('option', { value: '', text: 'Select…' }));
+      SOURCES.forEach(function (src) {
+        sourceSelect.appendChild(el('option', { value: src, text: src }));
+      });
+      bindInput(sourceSelect, 'source', 'change');
+
+      stepBodyEl.appendChild(el('div', {}, [
+        el('label', { class: 'af-label', text: 'How did you hear about us?' }),
+        sourceSelect,
+      ]));
+    }
+
+    if (i === 3) {
+      stepBodyEl.appendChild(el('div', {}, [
+        el('label', { class: 'af-label', text: 'Describe your concerns' }),
+        bindInput(el('textarea', { class: 'af-input', placeholder: 'Cracks in the wall, sloping floors, standing water…' }), 'concerns'),
+      ]));
+      stepBodyEl.appendChild(el('label', { class: 'af-label', style: 'margin-bottom:0', text: 'Share photos (optional)' }));
+
+      var dz = el('div', { class: 'af-dropzone' });
+      var dzIcon = el('div', { class: 'af-dropzone-icon' });
+      dzIcon.innerHTML = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="M17 8l-5-5-5 5M12 3v13"></path></svg>';
+      var dzTitle = el('div', { class: 'af-dropzone-title' });
+      dzTitle.innerHTML = 'Drag &amp; drop or <span>browse files</span>';
+      var dzSub = el('div', { class: 'af-dropzone-sub', text: 'Images only · up to 3 · 10MB max' });
+      dz.appendChild(dzIcon); dz.appendChild(dzTitle); dz.appendChild(dzSub);
+      stepBodyEl.appendChild(dz);
+    }
+  }
+
+  function renderProgress() {
+    progressEl.innerHTML = '';
+    for (var n = 0; n < 4; n++) {
+      progressEl.appendChild(el('div', { class: 'af-progress-seg' + (n <= state.step ? ' done' : '') }));
+    }
+  }
+
+  function renderNav() {
+    backBtn.hidden = state.step === 0;
+    nextLabelEl.textContent = state.step === 3 ? 'Send request' : 'Continue';
+  }
+
+  function renderHeader() {
+    var s = STEPS[state.step];
+    eyebrowEl.textContent = s.eyebrow;
+    titleEl.textContent = s.title;
+  }
+
+  function renderWizard() {
+    renderHeader();
+    renderProgress();
+    renderStepBody();
+    renderNav();
+  }
+
+  function animStep(dir) {
+    stepBodyEl.animate(
+      [{ opacity: 0, transform: 'translateX(' + (dir * 24) + 'px)' }, { opacity: 1, transform: 'translateX(0)' }],
+      { duration: 260, easing: EASE }
+    );
+  }
+
+  function showSuccess() {
+    wizardEl.hidden = true;
+    successEl.hidden = false;
+    var nm = state.first.trim();
+    successTitleEl.textContent = 'You’re all set, ' + (nm || 'there') + '!';
+  }
+
+  function resetToStart() {
+    state.step = 0;
+    state.done = false;
+    wizardEl.hidden = false;
+    successEl.hidden = true;
+    renderWizard();
+  }
+
+  function makeGhost(rect, radius) {
+    var g = document.createElement('div');
+    g.className = 'af-ghost';
+    g.style.top = rect.top + 'px';
+    g.style.left = rect.left + 'px';
+    g.style.width = rect.width + 'px';
+    g.style.height = rect.height + 'px';
+    g.style.borderRadius = radius + 'px';
+    document.body.appendChild(g);
+    return g;
+  }
+
+  function expand() {
+    if (state.busy) return;
+    state.busy = true;
+    var DUR = 480;
+    panel.style.opacity = '0';
+    panel.style.pointerEvents = 'none';
+    var from = btn.getBoundingClientRect();
+    var to = panel.getBoundingClientRect();
+    var ghost = makeGhost(from, 999);
+    btn.style.opacity = '0';
+    ghost.animate([
+      { top: from.top + 'px', left: from.left + 'px', width: from.width + 'px', height: from.height + 'px', borderRadius: '999px' },
+      { top: to.top + 'px', left: to.left + 'px', width: to.width + 'px', height: to.height + 'px', borderRadius: '28px' },
+    ], { duration: DUR, easing: EASE, fill: 'forwards' }).onfinish = function () {
+      panel.style.opacity = '1';
+      panel.style.pointerEvents = 'auto';
+      form.animate([{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 220, easing: 'ease-out', fill: 'forwards' });
+      ghost.remove();
+      state.expanded = true;
+      state.busy = false;
+      btn.setAttribute('aria-expanded', 'true');
+    };
+  }
+
+  function collapse() {
+    if (state.busy) return;
+    state.busy = true;
+    var DUR = 440;
+    var from = panel.getBoundingClientRect();
+    var to = btn.getBoundingClientRect();
+    form.style.opacity = '0';
+    var ghost = makeGhost(from, 28);
+    panel.style.opacity = '0';
+    panel.style.pointerEvents = 'none';
+    ghost.animate([
+      { top: from.top + 'px', left: from.left + 'px', width: from.width + 'px', height: from.height + 'px', borderRadius: '28px' },
+      { top: to.top + 'px', left: to.left + 'px', width: to.width + 'px', height: to.height + 'px', borderRadius: '999px' },
+    ], { duration: DUR, easing: EASE, fill: 'forwards' }).onfinish = function () {
+      btn.style.opacity = '1';
+      form.style.opacity = '1';
+      ghost.remove();
+      state.expanded = false;
+      state.busy = false;
+      btn.setAttribute('aria-expanded', 'false');
+      resetToStart();
+      state.zip = state.street = state.city = state.stateVal = '';
+      state.first = state.last = state.phone = state.email = state.source = state.concerns = '';
+    };
+  }
+
+  function toggle() {
+    if (state.busy) return;
+    state.expanded ? collapse() : expand();
+  }
+
+  function next() {
+    if (state.step < 3) {
+      state.step += 1;
+      renderWizard();
+      animStep(1);
+    } else {
+      showSuccess();
+    }
+  }
+
+  function back() {
+    if (state.step > 0) {
+      state.step -= 1;
+      renderWizard();
+      animStep(-1);
+    }
+  }
+
+  btn.addEventListener('click', toggle);
+  closeBtn.addEventListener('click', toggle);
+  nextBtn.addEventListener('click', next);
+  backBtn.addEventListener('click', back);
+
+  document.addEventListener('pointerdown', function (e) {
+    if (!state.expanded || state.busy) return;
+    if (!panel.contains(e.target) && !btn.contains(e.target)) collapse();
+  }, true);
+
+  renderWizard();
+})();
+</script>
+</body>
+</html>
