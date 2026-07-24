@@ -137,7 +137,7 @@
 
     <!-- EXPANDED: multistep panel -->
     <div class="af-panel" id="afPanel" role="dialog" aria-modal="true" aria-label="Free estimate form">
-      <div class="af-form" id="afForm">
+      <form class="af-form" id="contact_form" name="contact_form" novalidate>
 
         <div class="af-head">
           <div>
@@ -174,7 +174,7 @@
           <div class="af-success-sub">We&#8217;ll reach out within one business day to schedule your free estimate.</div>
         </div>
 
-      </div>
+      </form>
     </div>
 
   </div>
@@ -191,12 +191,20 @@
     { eyebrow: 'Step 4 of 4', title: 'About your project' },
   ];
   var STATES = ['AL','AK','AZ','AR','CA','CO','CT','DE','DC','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY'];
-  var SOURCES = ['Referral','Previous Customer','Internet / Web Search','TV','Radio','Mail','Other'];
+  var SOURCES = [
+    { value: '1', label: 'Referral' },
+    { value: '2', label: 'Previous Customer' },
+    { value: '3', label: 'Internet / Web Search' },
+    { value: '4', label: 'TV' },
+    { value: '5', label: 'Radio' },
+    { value: '6', label: 'Mail' },
+    { value: '7', label: 'Other' },
+  ];
   var EASE = 'cubic-bezier(.16,1,.3,1)';
 
   var btn = document.getElementById('afBtn');
   var panel = document.getElementById('afPanel');
-  var form = document.getElementById('afForm');
+  var form = document.getElementById('contact_form');
   var eyebrowEl = document.getElementById('afEyebrow');
   var titleEl = document.getElementById('afTitle');
   var progressEl = document.getElementById('afProgress');
@@ -242,8 +250,8 @@
 
     if (i === 0) {
       var wrapZip = el('div', {}, [
-        el('label', { class: 'af-label', text: 'Your ZIP code' }),
-        bindInput(el('input', { class: 'af-input', inputmode: 'numeric', placeholder: 'e.g. 32210' }), 'zip'),
+        el('label', { class: 'af-label', for: 'Zip', text: 'Your ZIP code' }),
+        bindInput(el('input', { class: 'af-input', id: 'Zip', name: 'Zip_Code', inputmode: 'numeric', maxlength: '10', placeholder: 'e.g. 32210' }), 'zip'),
       ]);
       stepBodyEl.appendChild(wrapZip);
       stepBodyEl.appendChild(el('div', { class: 'af-help', text: 'We’ll confirm we service your area before booking a visit.' }));
@@ -251,11 +259,11 @@
 
     if (i === 1) {
       stepBodyEl.appendChild(el('div', {}, [
-        el('label', { class: 'af-label', text: 'Street address' }),
-        bindInput(el('input', { class: 'af-input', placeholder: '123 Main St' }), 'street'),
+        el('label', { class: 'af-label', for: 'Street', text: 'Street address' }),
+        bindInput(el('input', { class: 'af-input', id: 'Street', name: 'Street', maxlength: '300', placeholder: '123 Main St' }), 'street'),
       ]));
 
-      var stateSelect = el('select', { class: 'af-input' });
+      var stateSelect = el('select', { class: 'af-input', id: 'State', name: 'State' });
       stateSelect.appendChild(el('option', { value: '', text: 'Select…' }));
       STATES.forEach(function (st) {
         stateSelect.appendChild(el('option', { value: st, text: st }));
@@ -264,11 +272,11 @@
 
       stepBodyEl.appendChild(el('div', { class: 'af-grid-addr' }, [
         el('div', {}, [
-          el('label', { class: 'af-label', text: 'City' }),
-          bindInput(el('input', { class: 'af-input', placeholder: 'City' }), 'city'),
+          el('label', { class: 'af-label', for: 'City', text: 'City' }),
+          bindInput(el('input', { class: 'af-input', id: 'City', name: 'City', maxlength: '255', placeholder: 'City' }), 'city'),
         ]),
         el('div', {}, [
-          el('label', { class: 'af-label', text: 'State' }),
+          el('label', { class: 'af-label', for: 'State', text: 'State' }),
           stateSelect,
         ]),
       ]));
@@ -276,31 +284,31 @@
 
     if (i === 2) {
       stepBodyEl.appendChild(el('div', { class: 'af-grid-2' }, [
-        el('div', {}, [el('label', { class: 'af-label', text: 'First name' }), bindInput(el('input', { class: 'af-input', placeholder: 'First' }), 'first')]),
-        el('div', {}, [el('label', { class: 'af-label', text: 'Last name' }), bindInput(el('input', { class: 'af-input', placeholder: 'Last' }), 'last')]),
+        el('div', {}, [el('label', { class: 'af-label', for: 'First_Name', text: 'First name' }), bindInput(el('input', { class: 'af-input', id: 'First_Name', name: 'First_Name', maxlength: '50', placeholder: 'First' }), 'first')]),
+        el('div', {}, [el('label', { class: 'af-label', for: 'Last_Name', text: 'Last name' }), bindInput(el('input', { class: 'af-input', id: 'Last_Name', name: 'Last_Name', maxlength: '50', placeholder: 'Last' }), 'last')]),
       ]));
       stepBodyEl.appendChild(el('div', { class: 'af-grid-2' }, [
-        el('div', {}, [el('label', { class: 'af-label', text: 'Phone' }), bindInput(el('input', { class: 'af-input', inputmode: 'tel', placeholder: 'Phone' }), 'phone')]),
-        el('div', {}, [el('label', { class: 'af-label', text: 'Email' }), bindInput(el('input', { class: 'af-input', inputmode: 'email', placeholder: 'Email' }), 'email')]),
+        el('div', {}, [el('label', { class: 'af-label', for: 'Phone', text: 'Phone' }), bindInput(el('input', { class: 'af-input', id: 'Phone', name: 'Phone', inputmode: 'tel', placeholder: 'Phone' }), 'phone')]),
+        el('div', {}, [el('label', { class: 'af-label', for: 'Email_Address', text: 'Email' }), bindInput(el('input', { class: 'af-input', id: 'Email_Address', name: 'Email_Address', type: 'email', maxlength: '200', placeholder: 'Email' }), 'email')]),
       ]));
 
-      var sourceSelect = el('select', { class: 'af-input' });
+      var sourceSelect = el('select', { class: 'af-input', id: 'lead_what_prompted_id', name: 'What_Prompted_Id' });
       sourceSelect.appendChild(el('option', { value: '', text: 'Select…' }));
       SOURCES.forEach(function (src) {
-        sourceSelect.appendChild(el('option', { value: src, text: src }));
+        sourceSelect.appendChild(el('option', { value: src.value, text: src.label }));
       });
       bindInput(sourceSelect, 'source', 'change');
 
       stepBodyEl.appendChild(el('div', {}, [
-        el('label', { class: 'af-label', text: 'How did you hear about us?' }),
+        el('label', { class: 'af-label', for: 'lead_what_prompted_id', text: 'How did you hear about us?' }),
         sourceSelect,
       ]));
     }
 
     if (i === 3) {
       stepBodyEl.appendChild(el('div', {}, [
-        el('label', { class: 'af-label', text: 'Describe your concerns' }),
-        bindInput(el('textarea', { class: 'af-input', placeholder: 'Cracks in the wall, sloping floors, standing water…' }), 'concerns'),
+        el('label', { class: 'af-label', for: 'Message', text: 'Describe your concerns' }),
+        bindInput(el('textarea', { class: 'af-input', id: 'Message', name: 'Message', placeholder: 'Cracks in the wall, sloping floors, standing water…' }), 'concerns'),
       ]));
       stepBodyEl.appendChild(el('label', { class: 'af-label', style: 'margin-bottom:0', text: 'Share photos (optional)' }));
 
